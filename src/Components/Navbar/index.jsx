@@ -1,10 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import { ShopppingCartContext } from '../../Context';
+import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 
 const Navbar = () => {
+    const { shoppingCart } = useContext(ShopppingCartContext);
     const activeStyle = 'underline underline-offset-4';
+    
     return (
-        <nav className="w-full flex justify-between py-5 px-8 fixed top-0 z-10 text-sm font-light bg-white">
-            <ul className="flex items-center gap-6">
+        <nav className='w-full flex justify-between py-5 px-8 fixed top-0 z-10 text-sm font-light bg-white'>
+            <ul className='flex items-center gap-6'>
                 <li>
                     <NavLink to='/' className='font-semibold text-lg'>Shopi</NavLink>
                 </li>
@@ -40,7 +45,7 @@ const Navbar = () => {
                 </li>
             </ul>
 
-            <ul className="flex items-center gap-6">
+            <ul className='flex items-center gap-6'>
                 <li>fran@platzi.com</li>
                 <li>
                     <NavLink to='/my-orders'
@@ -57,7 +62,7 @@ const Navbar = () => {
                      className={({isActive}) => (isActive ? activeStyle : undefined)}
                     >Sign out</NavLink>
                 </li>
-                <li>10</li>
+                <li className='flex flex-row justify-center items-center'><ShoppingBagIcon className='h-6 w-6 text-black'/>{shoppingCart.length}</li>
             </ul>
         </nav>
     );
