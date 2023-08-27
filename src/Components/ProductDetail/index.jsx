@@ -9,7 +9,7 @@ const ProductDetail = () => {
             product } = useContext(ShoppingCartContext);
 
     return (
-        <aside className={`w-[360px] h-[calc(100vh-68px)] fixed right-0 bottom-0 z-10 rounded-lg bg-white border border-black ${isProductDetailOpen ? 'flex flex-col': 'hidden'}`}>
+        <aside className={`fixed xs:top-0 xs:bottom-0 xs:m-auto xs:left-0 xs:right-0 xs:w-[320px] w-[360px] h-fit sm:h-[calc(100vh-68px)] right-0 bottom-0 z-10 rounded-lg bg-white border border-black ${isProductDetailOpen ? 'flex flex-col': 'hidden'}`}>
             <div className='w-full p-6 flex justify-between items-center'>
                 <h2 className='text-xl font-medium'>Detail</h2>
                 <div className='cursor-pointer'onClick={() => setIsProductDetailOpen(false)}><XMarkIcon className='h-6 w-6 text-black'/></div>

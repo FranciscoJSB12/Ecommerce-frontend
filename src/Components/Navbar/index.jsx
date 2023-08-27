@@ -6,7 +6,7 @@ import { categories } from '../../utils/constants';
 
 const Navbar = () => {
     
-    const { shoppingCart, setCategory } = useContext(ShoppingCartContext);
+    const { shoppingCart, setCategory, setIsCheckoutSideMenuOpen} = useContext(ShoppingCartContext);
     const activeStyle = 'underline underline-offset-4';
     
     return (
@@ -73,7 +73,7 @@ const Navbar = () => {
                      className={({isActive}) => (isActive ? activeStyle : undefined)}
                     >Sign out</NavLink>
                 </li>
-                <li className='flex flex-row justify-center items-center'><ShoppingBagIcon className='h-6 w-6 text-black'/>{shoppingCart.length}</li>
+                <li onClick={() => setIsCheckoutSideMenuOpen(current => !current)}className='flex flex-row justify-center items-center cursor-pointer'><ShoppingBagIcon className='h-6 w-6 text-black'/>{shoppingCart.length}</li>
             </ul>
         </nav>
     );

@@ -30,15 +30,15 @@ const Card = ({ product }) => {
         const isInCart = shoppingCart.some(item => item.id === product.id);
 
         if (!isInCart){
-            return (<div className='absolute top-0 right-0 m-2 bg-white w-6 h-6 rounded-full p-1 flex justify-center items-center font-light text-xl' onClick={(event) => addProductToCart(event, product)}><PlusIcon className='h-6 w-6 text-black'/></div>);
+            return (<div className='absolute top-0 right-0 m-2 bg-white w-6 xs:w-8 h-6 xs:h-8 rounded-full p-1 flex justify-center items-center font-light text-xl' onClick={(event) => addProductToCart(event, product)}><PlusIcon className='h-6 xs:w-8 w-6 xs:h-8 text-black'/></div>);
         } else {
-            return (<div className='absolute top-0 right-0 m-2 bg-black w-6 h-6 rounded-full p-1 flex justify-center items-center font-light text-xl cursor-default'> <CheckIcon className='h-6 w-6 text-white'/></div>);
+            return (<div className='absolute top-0 right-0 m-2 bg-black w-6 xs:w-8 h-6 xs:h-8 rounded-full p-1 flex justify-center items-center font-light text-xl cursor-default'> <CheckIcon className='h-6 xs:h-8 w-6 xs:w-8 text-white'/></div>);
         }
     }
     
     return (
-        <div className="bg-white cursor-pointer w-60" onClick={() => openProductDetail(product)}>
-            <figure className="w-60 h-52 relative">
+        <div className="bg-white cursor-pointer w-60 xs:w-72" onClick={() => openProductDetail(product)}>
+            <figure className="w-60 xs:w-72 h-52 xs:h-60 relative">
                 <img src={product.image} className="w-full h-full rounded-lg object-cover" alt={product.name}/>
                 <p className="absolute bottom-0 left-0 m-2 bg-white/60 py-0.5 px-3 rounded-lg text-xs text-black">{product.category}</p>
                 {renderIcon(product)}

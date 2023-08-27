@@ -32,10 +32,11 @@ const CheckoutSideMenu = () => {
 
         setOrder([...order, newOrder]);
         setShoppingCart([]);
+        setIsCheckoutSideMenuOpen(false)
     }
 
     return (
-    <aside className={`w-[360px] h-[calc(100vh-68px)] fixed right-0 bottom-0 z-10 rounded-lg bg-white border border-black ${isCheckoutSideMenuOpen ? 'flex flex-col': 'hidden'}`}>
+    <aside className={`fixed xs:top-0 xs:bottom-0 xs:m-auto xs:left-0 xs:right-0 xs:w-[320px] xs:h-[60vh] w-[360px] h-[calc(100vh-68px)] right-0 bottom-0 z-10 rounded-lg bg-white border border-black ${isCheckoutSideMenuOpen ? 'flex flex-col': 'hidden'}`}>
         <div className='w-full p-6 flex justify-between items-center'>
             <h1 className='text-xl font-medium'>My Order</h1>
             <div className='cursor-pointer' onClick={() => setIsCheckoutSideMenuOpen(false)}><XMarkIcon className='h-6 w-6 text-black'/></div>

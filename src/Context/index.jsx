@@ -13,12 +13,21 @@ export const ShoppingCartProvider = ({ children }) => {
     const [product, setProduct] = useState({});
     const [shoppingCart, setShoppingCart] = useState([]);
     const [order, setOrder] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
       (async () => {
-        const res = await fetch('https://ecommerce-backend-puce.vercel.app/api/products/');  
-        const data = await res.json();
-        setProducts(data);
+        try {
+          const res = await fetch('https://ecommerce-backend-puce.vercel.app/api/products/');  
+          const data = await res.json();
+          setProducts(data);
+          setLoading(false);
+        } catch (err) {
+          setLoading(false);
+          setError(true);
+          console.warn(err);
+        }
       })();
     }, []);
 
@@ -63,7 +72,11 @@ export const ShoppingCartProvider = ({ children }) => {
             shoppingCart,
             setShoppingCart,
             order,
-            setOrder
+            setOrder, 
+            loading,
+            setLoading,
+            error,
+            setError
         }}>
             { children }
         </ShoppingCartContext.Provider>
