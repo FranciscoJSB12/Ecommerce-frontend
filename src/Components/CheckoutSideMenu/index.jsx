@@ -1,16 +1,19 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { ShopppingCartContext } from '../../Context';
+import { ShoppingCartContext } from '../../Context';
 import { totalPrice } from '../../utils';
-import OrderCard from '../OrderCard';
+import OrderCard from '../OrderCard'
 
 const CheckoutSideMenu = () => {
     
     const { isCheckoutSideMenuOpen, 
             setIsCheckoutSideMenuOpen,
             shoppingCart,
-            setShoppingCart
-    } = useContext(ShopppingCartContext);
+            setShoppingCart,
+            order,
+            setOrder  
+    } = useContext(ShoppingCartContext);
 
     const deleteProduct = (id) => {
         const index = shoppingCart.findIndex(item => item.id === id);
@@ -19,20 +22,37 @@ const CheckoutSideMenu = () => {
         setShoppingCart(productList);
     }
 
+    const saveOrder = () => {
+        const newOrder = {
+            date: '01.01.23',
+            products: shoppingCart,
+            totalProducts: shoppingCart.length,
+            totalPrice: totalPrice(shoppingCart)
+        }
+
+        setOrder([...order, newOrder]);
+        setShoppingCart([]);
+    }
+
     return (
     <aside className={`w-[360px] h-[calc(100vh-68px)] fixed right-0 bottom-0 z-10 rounded-lg bg-white border border-black ${isCheckoutSideMenuOpen ? 'flex flex-col': 'hidden'}`}>
         <div className='w-full p-6 flex justify-between items-center'>
-            <h2 className='text-xl font-medium'>My Order</h2>
+            <h1 className='text-xl font-medium'>My Order</h1>
             <div className='cursor-pointer' onClick={() => setIsCheckoutSideMenuOpen(false)}><XMarkIcon className='h-6 w-6 text-black'/></div>
         </div>
         <div className='px-6 overflow-y-scroll flex-1'>
-            { shoppingCart.map(product => <OrderCard product={product} key={product.id} deleteProduct={deleteProduct}/>) }
+            { 
+                shoppingCart.map(product => <OrderCard product={product} key={product.id} deleteProduct={deleteProduct}/>) 
+            }
         </div>
-        <div className='p-6'>
-            <p className='flex flex-row justify-between items-center'>
+        <div className='px-6 pb-6'>
+            <p className='flex flex-row justify-between items-center m-4'>
                 <span className='font-light'>Total:</span>
                 <span className='font-medium text-2xl'>${totalPrice(shoppingCart)}</span>
             </p>
+            <Link to='/my-orders/last'>
+                <button className='w-full h-14 rounded-lg bg-black text-white text-lg' onClick={() => saveOrder()}>Checkout</button>
+            </Link>
         </div>
     </aside>
     );

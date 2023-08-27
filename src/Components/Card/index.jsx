@@ -1,6 +1,6 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { PlusIcon, CheckIcon } from '@heroicons/react/24/outline'
-import { ShopppingCartContext } from '../../Context';
+import { ShoppingCartContext } from '../../Context';
 
 const Card = ({ product }) => {
     
@@ -11,7 +11,7 @@ const Card = ({ product }) => {
             setProduct,
             shoppingCart,
             setShoppingCart
-          } = useContext(ShopppingCartContext);
+          } = useContext(ShoppingCartContext);
 
     const openProductDetail = (product) => {
         setIsProductDetailOpen(true);

@@ -1,9 +1,9 @@
-import Layout from "../../Components/Layout";
+import Layout from '../../Components/Layout';
 
 const SignIn = () => {
     return (
       <Layout>
-        Sign in
+        <h1 className='text-lg font-medium mb-6'>Sign in</h1>
       </Layout>
     );
   }

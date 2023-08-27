@@ -3,7 +3,7 @@ import Layout from '../../Components/Layout';
 const NotFound = () => {
     return (
       <Layout>
-        Not found
+        <h1 className='text-lg font-medium mb-6'>Not Found</h1>
       </Layout>
     );
   }

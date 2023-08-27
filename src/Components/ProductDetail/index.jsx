@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { ShopppingCartContext } from '../../Context';
+import { ShoppingCartContext } from '../../Context';
 
 const ProductDetail = () => {
     
     const { isProductDetailOpen, 
             setIsProductDetailOpen,
-            product } = useContext(ShopppingCartContext);
+            product } = useContext(ShoppingCartContext);
 
     return (
         <aside className={`w-[360px] h-[calc(100vh-68px)] fixed right-0 bottom-0 z-10 rounded-lg bg-white border border-black ${isProductDetailOpen ? 'flex flex-col': 'hidden'}`}>
