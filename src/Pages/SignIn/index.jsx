@@ -1,9 +1,15 @@
+import { useState } from 'react';
 import Layout from '../../Components/Layout';
+import LogIn from '../../Components/LogIn';
+import SignUp from '../../Components/SignUp';
 
 const SignIn = () => {
+    const [isLogInHidden, setIsLogInHidden] = useState(false);
+    const [isSignUpHidden, setSignUpHidden] = useState(true);
     return (
       <Layout>
-        <h1 className='text-lg font-medium mb-6'>Sign in</h1>
+        {!isLogInHidden && <LogIn setIsLogInHidden={setIsLogInHidden} setSignUpHidden={setSignUpHidden}/>}
+        {!isSignUpHidden && <SignUp/>}
       </Layout>
     );
   }

@@ -90,7 +90,7 @@ const VerticalNavBar = () => {
                     >My orders</NavLink>
                 </li>
                 <li onClick={() => setIsVerticalBarHidden(current => !current)}>
-                    <NavLink to='/sign-out'
+                    <NavLink to='/sign-in'
                     className={({isActive}) => (isActive ? activeStyle : undefined)}
                     >Sign out</NavLink>
                 </li>
