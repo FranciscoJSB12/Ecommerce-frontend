@@ -38,7 +38,7 @@ const Card = ({ product }) => {
     
     return (
         <div className="bg-white cursor-pointer w-60 xs:w-72" onClick={() => openProductDetail(product)}>
-            <figure className="w-60 xs:w-72 h-52 xs:h-60 relative">
+            <figure className="w-60 xs:w-72 h-52 xs:h-72 relative">
                 <img src={product.image} className="w-full h-full rounded-lg object-cover" alt={product.name}/>
                 <p className="absolute bottom-0 left-0 m-2 bg-white/60 py-0.5 px-3 rounded-lg text-xs text-black">{product.category}</p>
                 {renderIcon(product)}
