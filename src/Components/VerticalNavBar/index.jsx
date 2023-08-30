@@ -6,13 +6,62 @@ import { categories } from '../../utils/constants';
 
 const VerticalNavBar = () => {
     
-    const { shoppingCart, setCategory, setIsCheckoutSideMenuOpen} = useContext(ShoppingCartContext);
+    const { shoppingCart, 
+            setCategory, 
+            setIsCheckoutSideMenuOpen,
+            setSignOut,
+            signOut
+          } = useContext(ShoppingCartContext);
+          
     const [isVerticalBarHidden, setIsVerticalBarHidden] = useState(true);
     const activeStyle = 'underline underline-offset-4';
 
     const handleSelect = (category) => {
         setCategory(category);
-        setIsVerticalBarHidden(current => !current)
+        setIsVerticalBarHidden(current => !current);
+    }
+
+    const handleSignOut = () => {
+        setIsVerticalBarHidden(current => !current);
+        const strigifiedSignOut = JSON.stringify(true);
+        localStorage.setItem('sign-out', strigifiedSignOut);
+        setSignOut(true);
+    }
+
+    const SignOut = localStorage.getItem('sign-out');
+    const parsedSignOut = JSON.parse(SignOut);
+    const isUserSignOut = signOut || parsedSignOut;
+
+    const renderView = () => {
+        if (isUserSignOut) {
+            return (
+                <li onClick={() => handleSignOut()}>
+                    <NavLink to='/sign-in'
+                    className={({isActive}) => (isActive ? activeStyle : undefined)}
+                    >Sign out</NavLink>
+                </li>);
+        } else {
+            return (
+                <>
+                    <li onClick={() => setIsVerticalBarHidden(current => !current)}>
+                        <NavLink to='/my-account'
+                        className={({isActive}) => (isActive ? activeStyle : undefined)}
+                        >My Account</NavLink>
+                    </li>
+                    <li>fran@platzi.com</li>
+                    <li onClick={() => setIsVerticalBarHidden(current => !current)}>
+                        <NavLink to='/my-orders'
+                        className={({isActive}) => (isActive ? activeStyle : undefined)}
+                        >My orders</NavLink>
+                    </li>
+                    <li onClick={() => handleSignOut()}>
+                        <NavLink to='/sign-in'
+                        className={({isActive}) => (isActive ? activeStyle : undefined)}
+                        >Sign out</NavLink>
+                    </li>
+                </>
+            );
+        }
     }
 
     return (
@@ -78,22 +127,7 @@ const VerticalNavBar = () => {
             </ul>
             <hr/>
             <ul className='flex flex-col items-center gap-6'>
-                <li onClick={() => setIsVerticalBarHidden(current => !current)}>
-                    <NavLink to='/my-account'
-                    className={({isActive}) => (isActive ? activeStyle : undefined)}
-                    >My Account</NavLink>
-                </li>
-                <li>fran@platzi.com</li>
-                <li onClick={() => setIsVerticalBarHidden(current => !current)}>
-                    <NavLink to='/my-orders'
-                    className={({isActive}) => (isActive ? activeStyle : undefined)}
-                    >My orders</NavLink>
-                </li>
-                <li onClick={() => setIsVerticalBarHidden(current => !current)}>
-                    <NavLink to='/sign-in'
-                    className={({isActive}) => (isActive ? activeStyle : undefined)}
-                    >Sign out</NavLink>
-                </li>
+                {renderView()}
             </ul>
         </aside>
         </>
